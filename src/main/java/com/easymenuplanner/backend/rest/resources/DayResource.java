@@ -36,6 +36,14 @@ public class DayResource extends BackendResource {
     
     @Context
     protected HttpServletRequest servletRequest;
+    
+    private String getFullURL() {
+        StringBuffer requestURL = servletRequest.getRequestURL();
+        if (servletRequest.getQueryString() != null) {
+            requestURL.append("?").append(servletRequest.getQueryString());
+        }
+        return requestURL.toString();
+    }
 
     //TODO: change to return only Days
     @GET
@@ -43,7 +51,7 @@ public class DayResource extends BackendResource {
     public ExportPOJO getDays(@QueryParam("acc") String encAccName, @QueryParam("dev") String encDevId) {
         logger.info("redirect!");
         try {
-            String url = servletRequest.getRequestURI();
+            String url = getFullURL();
             logger.info("url: " + url);
             servletResponse.sendRedirect(url);
         } catch (IOException e) {
