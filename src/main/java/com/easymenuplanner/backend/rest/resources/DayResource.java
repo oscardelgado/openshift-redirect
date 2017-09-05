@@ -31,33 +31,12 @@ public class DayResource extends BackendResource {
     private final static Logger logger = LoggerFactory.getLogger(DayResource.class);
     private static final int MAX = 100;
     
-    @Context
-    protected HttpServletResponse servletResponse;
-    
-    @Context
-    protected HttpServletRequest servletRequest;
-    
-    private String getFullURL() {
-        logger.info("serverName: " + servletRequest.getServerName());
-        String requestURL = servletRequest.getRequestURL().toString().replaceAll(servletRequest.getServerName(), "easymenuplanerwildfly-ods.rhcloud.com");
-        if (servletRequest.getQueryString() != null) {
-            requestURL.concat("?").concat(servletRequest.getQueryString());
-        }
-        return requestURL;
-    }
-
     //TODO: change to return only Days
     @GET
     @Path("/")
     public ExportPOJO getDays(@QueryParam("acc") String encAccName, @QueryParam("dev") String encDevId) {
-        logger.info("redirect!");
-        try {
-            String url = getFullURL();
-            logger.info("url: " + url);
-            servletResponse.sendRedirect(url);
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
+        
+        redirect();
         
         logger.info("download");
 
@@ -108,6 +87,9 @@ public class DayResource extends BackendResource {
             @QueryParam("start") int start,
             @QueryParam("count") int count
     ) {
+        
+        redirect();
+        
         logger.info("download");
         List<ExportPOJO> pojos = null;
         try {
@@ -130,6 +112,9 @@ public class DayResource extends BackendResource {
     @PUT
     @Path("/")
     public ExportPOJO updateDays(ExportPOJO pojo) {
+        
+        redirect();
+        
         logger.info("updateDays");
         logger.debug("pojo: {}", pojo);
 
