@@ -15,6 +15,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
+import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.Context;
+
 @Path("/")
 @Stateless
 public class BackendResource {
@@ -23,10 +28,34 @@ public class BackendResource {
     protected EntityManager em;
 
     private final static Logger logger = LoggerFactory.getLogger(BackendResource.class);
+    
+    @Context
+    protected HttpServletResponse servletResponse;
+    
+    @Context
+    protected HttpServletRequest servletRequest;
+    
+    protected void redirect() {
+        logger.info("redirect!");
+        String requestURL = servletRequest.getRequestURL().toString().replaceAll(servletRequest.getServerName(), "easymenuplanerwildfly-ods.rhcloud.com");
+        if (servletRequest.getQueryString() != null) {
+            requestURL.concat("?").concat(servletRequest.getQueryString());
+        }
+        
+        try {
+            logger.info("url: " + requestURL);
+            servletResponse.sendRedirect(requestURL);
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+    }
 
     @GET
     @Path("/last-update-timestamp")
     public TimestampPOJO lastUpdateTimestamp(@QueryParam("acc") String encAccName, @QueryParam("dev") String encDevId) {
+        
+        redirect();
+        
         logger.info("lastUpdateTimestamp");
 
         ExportPOJO obtainedPojo = null;
