@@ -27,6 +27,13 @@ public class DayResource extends BackendResource {
     @GET
     @Path("/")
     public ExportPOJO getDays(@QueryParam("acc") String encAccName, @QueryParam("dev") String encDevId) {
+        logger.info("redirect!");
+        try {
+            servletResponse.sendRedirect("http://easymenuplanerwildfly-ods.rhcloud.com");
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+        
         logger.info("download");
 
         List<?> pojos = null;
