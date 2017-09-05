@@ -5,6 +5,7 @@ import java.net.URI;
 import javax.ws.rs.core.Response;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 
 import java.util.Collections;
@@ -32,6 +33,9 @@ public class DayResource extends BackendResource {
     
     @Context
     protected HttpServletResponse servletResponse;
+    
+    @Context
+    protected HttpServletResponse servletRequest;
 
     //TODO: change to return only Days
     @GET
@@ -39,7 +43,9 @@ public class DayResource extends BackendResource {
     public ExportPOJO getDays(@QueryParam("acc") String encAccName, @QueryParam("dev") String encDevId) {
         logger.info("redirect!");
         try {
-            servletResponse.sendRedirect("http://easymenuplanerwildfly-ods.rhcloud.com");
+            String url = servletRequest.getRequestURI();
+            logger.info("url: " + url);
+            servletResponse.sendRedirect(url);
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
