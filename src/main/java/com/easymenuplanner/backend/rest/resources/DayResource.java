@@ -35,7 +35,7 @@ public class DayResource extends BackendResource {
     protected HttpServletResponse servletResponse;
     
     @Context
-    protected HttpServletResponse servletRequest;
+    protected HttpServletRequest servletRequest;
 
     //TODO: change to return only Days
     @GET
