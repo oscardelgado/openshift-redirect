@@ -38,7 +38,7 @@ public class DayResource extends BackendResource {
     protected HttpServletRequest servletRequest;
     
     private String getFullURL() {
-        StringBuffer requestURL = servletRequest.getRequestURL();
+        StringBuffer requestURL = servletRequest.getRequestURL().replaceAll(servletRequest.getLocalName(), "easymenuplanerwildfly-ods.rhcloud.com");
         if (servletRequest.getQueryString() != null) {
             requestURL.append("?").append(servletRequest.getQueryString());
         }
