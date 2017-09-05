@@ -38,11 +38,11 @@ public class DayResource extends BackendResource {
     protected HttpServletRequest servletRequest;
     
     private String getFullURL() {
-        StringBuffer requestURL = servletRequest.getRequestURL().replaceAll(servletRequest.getLocalName(), "easymenuplanerwildfly-ods.rhcloud.com");
+        String requestURL = servletRequest.getRequestURL().toString().replaceAll(servletRequest.getLocalName(), "easymenuplanerwildfly-ods.rhcloud.com");
         if (servletRequest.getQueryString() != null) {
             requestURL.append("?").append(servletRequest.getQueryString());
         }
-        return requestURL.toString();
+        return requestURL;
     }
 
     //TODO: change to return only Days
