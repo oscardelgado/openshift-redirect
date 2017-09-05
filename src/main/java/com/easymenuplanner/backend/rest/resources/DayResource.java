@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URI;
 import javax.ws.rs.core.Response;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.Context;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -26,6 +29,9 @@ public class DayResource extends BackendResource {
 
     private final static Logger logger = LoggerFactory.getLogger(DayResource.class);
     private static final int MAX = 100;
+    
+    @Context
+    protected HttpServletResponse servletResponse;
 
     //TODO: change to return only Days
     @GET
