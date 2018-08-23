@@ -37,7 +37,9 @@ public class BackendResource {
     
     protected void redirect() {
         logger.info("redirect!");
-        String requestURL = servletRequest.getRequestURL().toString().replaceAll(servletRequest.getServerName(), "easymenuplanerwildfly-ods.rhcloud.com");
+        logger.info("from: " + servletRequest.getRequestURL().toString());
+        String requestURL = servletRequest.getRequestURL().toString().replaceAll(servletRequest.getServerName(), "easymenuplanner-easymenuplanner.b9ad.pro-us-east-1.openshiftapps.com/");
+        logger.info("to: " + requestURL);
         if (servletRequest.getQueryString() != null) {
             requestURL.concat("?").concat(servletRequest.getQueryString());
         }
