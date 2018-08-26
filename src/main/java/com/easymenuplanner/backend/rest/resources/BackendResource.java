@@ -24,8 +24,8 @@ import javax.ws.rs.core.Context;
 @Stateless
 public class BackendResource {
 
-    @Inject
-    protected EntityManager em;
+    //@Inject
+    //protected EntityManager em;
 
     private final static Logger logger = LoggerFactory.getLogger(BackendResource.class);
     
@@ -61,7 +61,7 @@ public class BackendResource {
         logger.info("lastUpdateTimestamp");
 
         ExportPOJO obtainedPojo = null;
-
+/*
         if (encDevId != null) {
             try {
                 obtainedPojo = (ExportPOJO) em.createQuery("SELECT e FROM ExportPOJO e "
@@ -90,9 +90,9 @@ public class BackendResource {
             } else {
                 return null;
             }
-        }
+        }*/
         TimestampPOJO pojo = new TimestampPOJO();
-        pojo.updateTimestamp = obtainedPojo.getUpdateTimestamp();
+        //pojo.updateTimestamp = obtainedPojo.getUpdateTimestamp();
         return pojo;
     }
 }
