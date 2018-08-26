@@ -39,7 +39,7 @@ public class DayResource extends BackendResource {
         redirect();
         
         logger.info("download");
-
+/*
         List<?> pojos = null;
 
         if (encDevId != null) {
@@ -78,6 +78,8 @@ public class DayResource extends BackendResource {
         } else {
             return null;
         }
+        */
+        return null;
     }
     
      @GET
@@ -91,6 +93,7 @@ public class DayResource extends BackendResource {
         redirect();
         
         logger.info("download");
+/*
         List<ExportPOJO> pojos = null;
         try {
             String sql = "SELECT e FROM ExportPOJO e "
@@ -106,6 +109,8 @@ public class DayResource extends BackendResource {
             return Collections.emptyList();
         }
         return pojos;
+        */
+        return null;
     }
 
     //TODO: change to manage only Days
@@ -115,15 +120,17 @@ public class DayResource extends BackendResource {
         
         redirect();
         
+        /*
         logger.info("updateDays");
         logger.debug("pojo: {}", pojo);
 
         saveOrUpdate(pojo);
+        */
         return pojo;
     }
 
     private void saveOrUpdate(ExportPOJO pojo) {
         logger.info("saveOrUpdate");
-        em.merge(pojo);
+        //em.merge(pojo);
     }
 }
